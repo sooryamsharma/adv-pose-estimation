@@ -30,7 +30,7 @@ __config__ = {
         'num_workers': 2,
         'use_data_loader': True,
         'alpha': 1/180,
-        'beta': 1/200,
-        'dlta': 0.0005,
+        'beta': 1/180,
+        'dlta': 0.0003,
     },
 }

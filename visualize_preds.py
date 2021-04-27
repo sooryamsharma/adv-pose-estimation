@@ -1,7 +1,6 @@
 import importlib
 import torch
 import os
-from torch import nn
 import numpy as np
 import cv2
 from skimage.transform import resize
@@ -10,6 +9,7 @@ import data.mpii.mpii_data_handler as data_handler
 import data.mpii.data_provider as data_provider
 from utils.transparent_imshow import transp_imshow
 from utils.checkpoints import save_checkpoint, save, reload
+from scipy.misc import imread
 
 os.environ["CUDA_DEVICE_ORDER"]="PCI_BUS_ID"
 os.environ["CUDA_VISIBLE_DEVICES"]="0"
@@ -80,9 +80,14 @@ def main():
     config = importlib.import_module('utils.config').__config__
     data_provider.init(config)
 
+    # get image idx from annot file
+    img_id = "099825179"
+    img_path = img_id+'.jpg'
+    idx = data_handler.get_imgID(img_path)
+
     # get image and heat map
     ds = data_provider.Dataset(config=config, ds=data_handler, index=data)
-    img, gt_hmap, gt_kp = ds.loadOrigImage(9995)  # input image index
+    img, gt_hmap, gt_kp = ds.loadOrigImage(1729)  # input image index
     plt.imshow(img)
     join_kp(gt_kp)
 

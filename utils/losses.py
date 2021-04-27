@@ -71,8 +71,8 @@ class PoseDiscriminatorLoss(nn.Module):
             # logits = pred
             # l.append(CGAN_loss(logits, gt))
 
-            pred[pred<0.4] = 0
-            pred[pred>=0.4] = 1
+            pred[pred<1] = 0
+            pred[pred>=1] = 1
             l.append(-F.binary_cross_entropy(pred, gt))
 
         # calculating 2nd term of Lp

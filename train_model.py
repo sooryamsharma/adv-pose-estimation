@@ -18,6 +18,7 @@ from utils.checkpoints import save_checkpoint, save, reload
 import utils.losses as loss
 from datetime import datetime
 from pytz import timezone
+from utils.model_summary import summary as get_summary
 #from multiprocessing import set_start_method
 #set_start_method('spawn')
 
@@ -30,7 +31,7 @@ def parse_command_line():
     parser = argparse.ArgumentParser()
     parser.add_argument('-c', '--continue_exp', type=str, help='continue exp')
     parser.add_argument('-e', '--exp', type=str, default='pose', help='experiments name')
-    parser.add_argument('-m', '--max_iters', type=int, default=250, help='max number of iterations (thousands)')
+    parser.add_argument('-m', '--max_iters', type=int, default=200, help='max number of iterations (thousands)')
     args = parser.parse_args()
     return args
 
@@ -149,6 +150,7 @@ def make_network(configs):
 
         gen_net = config['inference']['gen_net']
         config['batch_id'] = batch_id
+        #print(gen_net)
         gen_net = gen_net.train()
 
         pose_disc = config['inference']['pdisc_net']
@@ -188,7 +190,8 @@ def make_network(configs):
                         pdisc_fake_loss = pdisc_fake_loss + torch.mean(pdisc_losses)
                         # optimize P net by maximizing p_fake_loss
                         pdisc_fake_loss.backward(retain_graph=True)
-                pdisc_optimizer.step()
+                    # update weights
+                    pdisc_optimizer.step()
 
                 # evaluate gen loss
                 gen_loss = gen_loss + torch.mean(gen_losses[-1])
@@ -197,7 +200,7 @@ def make_network(configs):
                 pdisc_loss = pdisc_real_loss.item() + pdisc_fake_loss.item()
 
 
-                gen_loss = gen_loss + config['train']['beta'] * ( - pdisc_loss)
+                gen_loss = gen_loss + config['train']['beta'] * (- pdisc_loss)
 
                 ## Train Generator using the updated loss
                 gen_optimizer = train_config['gen_optimizer']
@@ -231,7 +234,6 @@ def make_network(configs):
             gen_out = gen_out[0]
             if type(gen_out) != list and type(gen_out) != tuple:
                 gen_out = [gen_out]
-            print(gen_out)
             out['preds'] = [make_output(i) for i in gen_out]
             return out
 
