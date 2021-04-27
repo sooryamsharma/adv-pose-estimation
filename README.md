@@ -8,6 +8,123 @@ Pose estimation using Deep Neural Networks (DNNs) has shown superior performance
 
 ### Results
 
-![](data/misc/images/pic1_2.png) | ![](data/misc/images/pic1_3.png)
-:------------------------------------:|:------------------------------------------:
-![](data/misc/images/pic2_2.png) | ![](data/misc/images/pic3_3.png)
+<table>
+<!-------------------------------------------------- ------------------------------------------------------>
+<tr>
+  
+<td>
+  
+<th> Stacked HG Network </th> 
+
+</td>
+
+<td>
+
+![](data/misc/images/pic1_2.png)
+
+</td>
+
+<td>
+
+![](data/misc/images/pic2_2.png)
+
+</td>
+
+<td>
+
+![](data/misc/images/pic3_2.png)
+
+</td>
+
+</tr>
+
+<!-------------------------------------------------- ------------------------------------------------------>
+
+<tr>
+
+<td>
+  
+<th> Proposed Model </th>
+  
+<td>
+
+![](data/misc/images/pic1_3.png)
+
+</td>
+
+<td>
+
+![](data/misc/images/pic2_3.png)
+
+</td>
+
+<td>
+
+![](data/misc/images/pic3_3.png)
+
+</td>
+
+</tr>
+
+<!-------------------------------------------------- ------------------------------------------------------>
+
+<tr>
+  
+<td>
+  
+<th> Stacked HG Network </th> 
+
+</td>
+
+<td>
+
+![](data/misc/images/pic4_2.png)
+
+</td>
+
+<td>
+
+![](data/misc/images/pic5_2.png)
+
+</td>
+
+<td>
+
+![](data/misc/images/pic6_2.png)
+
+</td>
+
+</tr>
+
+<!-------------------------------------------------- ------------------------------------------------------>
+
+<tr>
+
+<td>
+  
+<th> Proposed Model </th>
+  
+<td>
+
+![](data/misc/images/pic4_3.png)
+
+</td>
+
+<td>
+
+![](data/misc/images/pic5_3.png)
+
+</td>
+
+<td>
+
+![](data/misc/images/pic6_3.png)
+
+</td>
+
+</tr>
+
+<!-------------------------------------------------- ------------------------------------------------------>
+
+
+</table>
